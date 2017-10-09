@@ -8,6 +8,7 @@ jobs:
   include:
     - stage: Build and test
       script:
+       - cd user_ubuntu
        - docker build -t sconaway/user_ubuntu .
        - docker run -d --name="uu" sconaway/user_ubuntu
        - docker logs uu
@@ -17,6 +18,7 @@ jobs:
 
     - stage: Build then Deploy to Docker Hub
       script:
+        - cd user_ubuntu
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
         - docker build -t sconaway/user_ubuntu .
         - docker push sconaway/user_ubuntu
