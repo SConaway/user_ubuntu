@@ -1,0 +1,22 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+jobs:
+  include:
+    - stage: Build and test
+      script:
+       - docker build -t sconaway/user_ubuntu .
+       - docker run -d --name="uu" sconaway/user_ubuntu
+       - docker logs uu
+       - sleep 120
+       - docker logs uu
+       - docker stop uu
+
+    - stage: Build then Deploy to Docker Hub
+      script:
+        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+        - docker build -t sconaway/user_ubuntu .
+        - docker push sconaway/user_ubuntu
