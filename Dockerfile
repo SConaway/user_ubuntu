@@ -5,8 +5,7 @@ RUN apt-get update && echo Updated && apt-get upgrade -y && echo Upgraded && apt
 RUN useradd user
 RUN echo "user ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/user
 RUN chmod 0440 /etc/sudoers.d/user
-RUN mkdir /home/user
 
 USER user
 
-ENTRYPOINT ["/bin/bash"]
+RUN mkdir /home/user
