@@ -6,3 +6,7 @@ RUN sudo apt-get update && echo Updated && sudo apt-get upgrade -y && \
   sudo apt-get check && echo Checked
 
 RUN sudo apt-get install curl wget git -y
+
+RUN echo Normal User Works
+
+RUN sudo echo sudo User Works
