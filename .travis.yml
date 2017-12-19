@@ -14,6 +14,7 @@ jobs:
        - sleep 5
        - docker logs uu
        - docker stop uu
+       - docker images
 
     - stage: Build and test
       script:
@@ -26,6 +27,7 @@ jobs:
        - sleep 120
        - docker logs uut
        - docker stop uut
+       - docker images
 
     - stage: Build then Deploy to Docker Hub
       script:
@@ -33,3 +35,4 @@ jobs:
         - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
         - docker build -t sconaway/user_ubuntu .
         - docker push sconaway/user_ubuntu
+        - docker images
